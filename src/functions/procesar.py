@@ -14,7 +14,7 @@ modelos = {
     "oscura"     : 'src/modelos/best160oscuras.pt',
     "movida"     : 'src/modelos/epoch2950640movimiento.pt',
     "desenfocada": 'src/modelos/best640blur.pt',
-    "pared"      : 'src/modelos/best640blur.pt',
+    "pared"      : 'src/modelos/epoch1240160paredes.pt',
     "personas"   : 'src/modelos/best2360160personas.pt'
 }
 
@@ -104,12 +104,11 @@ def procesarImgBase64(imgb):
         return output
 
 def evaluarSimilitud(i1,i2):
-    print("hola")
     #preparar imagen
     image = PILImage.open(io.BytesIO(i1))
     image_np = np.array(image)
     img1 = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
-    print("Hola2")
+    
     image2 = PILImage.open(io.BytesIO(i2))
     image_np2 = np.array(image2)
     img2 = cv2.cvtColor(image_np2, cv2.COLOR_RGB2BGR)
@@ -148,4 +147,5 @@ def evaluarSimilitud(i1,i2):
 
     percentage_similarity = len(good_points) / number_keypoints * 100
     mach = "Que tan bueno es el match", percentage_similarity, "%"
+    print("Mach: ",percentage_similarity)
     return {"docs": [{"Mach": percentage_similarity}]}
