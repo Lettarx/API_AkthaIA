@@ -10,7 +10,9 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8080",
-    "http://localhost:4321"
+    "http://localhost:4321",
+    "https://akthaia.pages.dev/",
+    "*"
 ]
 
 app.add_middleware(
