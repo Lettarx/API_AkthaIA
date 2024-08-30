@@ -8,15 +8,6 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# Configuración de CORS
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://localhost:4321",
-    "https://akthaia.pages.dev/",
-    "*"
-]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
