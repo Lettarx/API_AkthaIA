@@ -37,6 +37,7 @@ thop  # FLOPs computation
 # albumentations>=1.0.3
 # pycocotools>=2.0  # COCO mAP
 # roboflow
+opencv-contrib-python
 
 # API -----------------------------------------
 fastapi==0.110.0
