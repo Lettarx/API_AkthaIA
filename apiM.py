@@ -1,6 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, Form
 from src.functions.procesar import procesarImg, evaluarSimilitud, procesarImgBase64
 from fastapi.middleware.cors import CORSMiddleware
+import subprocess
+
 
 from pydantic import BaseModel
 
@@ -41,7 +43,13 @@ async def evaluar_imagen(file1: UploadFile = File(None), file2: UploadFile = Fil
 async def evaluar_imagen(image_input: ImageInput):
     return procesarImgBase64(image_input.imagen_base64)
 
+
 if __name__ == "__main__":
-    import uvicorn
-    # Ejecuta el servidor usando Uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+      subprocess.run([
+        "uvicorn", 
+        "apiM:app", 
+        "--host", "0.0.0.0", 
+        "--port", "8001", 
+        "--workers", "4",
+        "--timeout-keep-alive", "60"  
+    ])
